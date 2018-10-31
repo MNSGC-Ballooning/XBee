@@ -1,0 +1,4 @@
+XBee	KEYWORD1
+enterATmode	KEYWORD2
+exitATmode	KEYWORD2
+atCommand	KEYWORD2
