@@ -17,14 +17,15 @@ byte XBee::peek() {
 }
 
 void XBee::print(String str) {
-  char* buffer = new char[str.length()+1];
+  char* buffer = new char[str.length()+1]();
   str.toCharArray(buffer, str.length()+1);
   port->write(buffer, str.length()+1);
+  Serial.write(buffer, str.length()+1);
   delete[] buffer;
 }
 
 void XBee::println(String str) {
-  char* buffer = new char[str.length()+1];
+  char* buffer = new char[str.length()+1]();
   str.toCharArray(buffer, str.length()+1);
   port->write(buffer, str.length()+1);
   port->write('\n');
@@ -66,7 +67,9 @@ void XBee::write(byte* buffer, int length) {
 bool XBee::enterATmode() {
   String response;
   for (byte i = 0; response.equals("") && (i < 10); i++) {
-    print("+++");
+    for (byte j = 0; j < 3; j++) {
+      port->write('+');
+    }
     delay(1000);
     response = port->readStringUntil('\r');
   }
