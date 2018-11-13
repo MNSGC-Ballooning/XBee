@@ -1,4 +1,10 @@
 XBee	KEYWORD1
+RelayXBee	KEYWORD1
 enterATmode	KEYWORD2
 exitATmode	KEYWORD2
 atCommand	KEYWORD2
+init	KEYWORD2
+setCooldown	KEYWORD2
+send	KEYWORD2
+sendGPS	KEYWORD2
+receive	KEYWORD2
