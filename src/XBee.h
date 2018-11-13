@@ -3,27 +3,24 @@
 
 #include <Arduino.h>
 
-class XBee {
+class XBee : public Stream {
   public:
+    //Constructor
     XBee(Stream* port);
-    int available();
-    void flush();
-    byte peek();
-    void print(String str);
-    void println(String str);
-    byte read();
-    int readBytes(byte* buffer, int length);
-    int readBytesUntil(char character, byte* buffer, int length);
-    String readString();
-    String readStringUntil(char terminator);
-    void setTimeout(long time);
-    void write(byte b);
-    void write(byte* buffer, int length);
-    
+    //Virtual Stream functions
+    int available() {return port->available();}
+    int peek() {return port->peek();}
+    int read() {return port->read();}
+    //Virtual Print functions
+    int availableForWrite() {return port->availableForWrite();}
+    void flush() {port->flush();}
+    size_t write(byte b) {return port->write(b);}
+    //AT commands
     bool enterATmode();
     bool exitATmode();
     String atCommand(String command);
   private:
+    //Connection used to communicate with XBee (eg. Serial1, SoftwareSerial, etc.)
     Stream* port;
 };
 
