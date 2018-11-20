@@ -5,8 +5,9 @@
 
 class XBee : public Stream {
   public:
-    //Constructor
+    //Constructor and Destructor
     XBee(Stream* port);
+    virtual ~XBee(){};
     //Virtual Stream functions
     int available() {return port->available();}
     int peek() {return port->peek();}
