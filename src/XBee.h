@@ -15,7 +15,8 @@ class XBee : public Stream {
     //Virtual Print functions
     int availableForWrite() {return port->availableForWrite();}
     void flush() {port->flush();}
-    size_t write(byte b) {return port->write(b);}
+    size_t write(uint8_t b) {return port->write(b);}
+    size_t write(const uint8_t *buffer, size_t size) {return port->write(buffer, size);}
     //AT commands
     bool enterATmode();
     bool exitATmode();
