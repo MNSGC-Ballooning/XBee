@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 
+#define XBEE_BAUD 9600
+
 class XBee : public Stream {
   public:
     //Constructor and Destructor

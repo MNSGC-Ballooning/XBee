@@ -1,7 +1,12 @@
 #include "RelayXBee.h"
 
-RelayXBee::RelayXBee(Stream* port, String id, char stack):
+RelayXBee::RelayXBee(Stream* port, String id):
   XBee(port), id(id) {
+}
+
+//Call during setup to configure radio settings
+void RelayXBee::init(char stack) {
+  String netID;
   switch (stack) {
     case 'A':
       netID = "AAAA";
@@ -15,10 +20,6 @@ RelayXBee::RelayXBee(Stream* port, String id, char stack):
     default:
       netID = "";
   }
-}
-
-//Call during setup to configure radio settings
-void RelayXBee::init() {
   enterATmode();
   atCommand("ATID"+netID);
   atCommand("ATDL0");
